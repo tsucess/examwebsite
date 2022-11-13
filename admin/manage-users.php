@@ -85,7 +85,7 @@ $users = mysqli_query($dbconnect, $query);
                             <tr>
                                 <td><?= $user['full_name'] ?></td>
                                 <td><?= $user['dob'] ?></td>
-                                <td><?= $user['gender'] ?></td>
+                                <td><?= $user['gender'] ? 'Male' : 'Female'; ?></td>
                                 <td><?= $user['passport_no'] ?></td>
                                 <td><?= $user['nationality'] ?></td>
                                 <td><a href="<?= ROOT_URL ?>admin/edit-user.php?id=<?= $user['id'] ?>" class="btn sm">Edit</a></td>
