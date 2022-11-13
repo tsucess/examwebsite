@@ -216,7 +216,7 @@ CATEGORY BUTTON CSS
     background: var(--color-blue-dark);
     color: var(--color-text);
     display: inline-block;
-    padding: 0.5rem 1rem;
+    padding: 0.8rem 1rem;
     border-radius: var(--card-border-radius-2);
     font-weight: 600;
     font-size: 0.8rem;
