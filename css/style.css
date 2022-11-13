@@ -221,10 +221,11 @@ CATEGORY BUTTON CSS
     font-weight: 600;
     font-size: 0.8rem;
     text-align: center;
+    width: 50%;
 }
 
 .category_button:hover {
-    color: var(--color-blue-dark);
+    color: var(--color-blue-light);
 }
 
 

@@ -13,12 +13,12 @@ $subjects = mysqli_query($dbconnect, $query);
 </section>
 
 <!-- ********************  Course Section *********************** -->
-<section id="course">
+<section class="courses">
     <h2 class="heading">Subjects</h2>
     <div class="container courses_container">
 
         <?php while($subject = mysqli_fetch_assoc($subjects)) : ?>
-            <article class="course">
+            <article id="course">
                 <div class="course_thumbnail">
                 <img src="./img/thumbnail/<?= $subject['thumbnail'] ?>">
                 </div>

@@ -48,7 +48,7 @@ $subjects = mysqli_query($dbconnect, $query);
     <h2 class="heading">Available subjects</h2>
     <div class="container courses_container">
         <?php while ($subject = mysqli_fetch_assoc($subjects)) : ?>
-            <article class="course">
+            <article id="course">
                 <div class="course_thumbnail">
                     <img src="./img/thumbnail/<?= $subject['thumbnail'] ?>">
                 </div>
