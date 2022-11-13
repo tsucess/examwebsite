@@ -240,7 +240,7 @@ GENERAL POST CSS
     border-radius: 1rem;
 }
 
-.course:hover .course_thumbnail img {
+#course:hover .course_thumbnail  img {
     filter: saturate(0);
     transition: filter 500ms ease;
 }
@@ -352,7 +352,7 @@ CAROUSEL CSS
 Courses CSS
 *************************************************/
 
-.course h2 {
+#course h2 {
     margin-top: 6rem;
 
 }
