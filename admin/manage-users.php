@@ -43,7 +43,7 @@ $users = mysqli_query($dbconnect, $query);
                 </li>
                 <?php if ($_SESSION['user_is_admin'] == 2) :  ?>
                     <li>
-                        <a href="manage-users.php"><i class="uil uil-users-alt"></i>
+                        <a href="manage-users.php" class="active"><i class="uil uil-users-alt"></i>
                             <h5>Manage Students</h5>
                         </a>
                     </li>
