@@ -2,11 +2,29 @@
 include './partials/header.php';
 
 
+
+   
+if (isset($_POST['submit'])) {
+    $session = $_POST['session'];
+    $year = $_POST['year'];
+}
+
 ?>
 
 <section class="invoice_section">
-    <div class="container invoice_section-container">
-        <h2>Selected Subjects</h2>
+    <div class="top_head">
+        <img id="logo" src="<?= ROOT_URL ?>/img/logo.png" alt="logo">
+        <h2 class="nav_logo">SEVEN SKIES IGCSE EXAM CENTER</h2>
+    </div>
+    <div id="summary" class="container invoice_section-container ">
+        <div class="control">
+            <h2>Selected Subjects</h2>
+            <div class="form-control">
+                <h3>Year: <?= $year ?></h3>
+                <h3>Session: <?= $session ? 'MAY/JUNE' : 'OCT/NOV'?></h3>
+            </div>
+        </div>
+        
         <form action="<?= ROOT_URL ?>php/summary-logic.php" method="POST">
             <table class="invoice">
                 <thead>
@@ -19,12 +37,10 @@ include './partials/header.php';
                 <tbody>
                     <?php
                     if (isset($_POST['submit'])) {
-
-                        $subjects = $_POST['subjects'];
+                        $subjects = $_POST['subjects']; 
                         $price = 0.0;
 
                         if (!empty($subjects)) {
-
                             foreach ($subjects as $item) {
                                 //fetch all subjects from database
                                 $query = "SELECT  subject, subject_code, fee FROM subjects WHERE id= $item ORDER BY id DESC";
@@ -43,12 +59,13 @@ include './partials/header.php';
                                     $price = $price + $subject['fee'];
                                 }
                             }
-                                $_SESSION['subjects'] = $subjects;
-                                
-
-                        } else{
+                            $_SESSION['subjects'] = $subjects;
+                            $_SESSION['session'] = $session;
+                            $_SESSION['year'] = $year;
+                            $_SESSION['price'] = $price;
+                        } else {
                             $_SESSION['select'] = "Please Select your Subjects";
-                            header('location: '. ROOT_URL . 'admin/available-courses.php');
+                            header('location: ' . ROOT_URL . 'admin/available-courses.php');
                             die();
                         }
                     }
@@ -62,8 +79,11 @@ include './partials/header.php';
                     </tr>
                 </tbody>
             </table>
+            <div class="control">
+                <a href="available-courses.php" class="btn-lg" name="cancel">Cancel</a>
+                <input type="submit" class="btn-lg" name="submit" value="Proceed to Payment">
+            </div>
 
-            <input type="submit" class="btn btn-edit" name="submit" value="Proceed to Payment">
         </form>
 
     </div>

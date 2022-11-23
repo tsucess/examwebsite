@@ -12,11 +12,15 @@ if(isset($_GET['id'])){
   //make sure we got back only one user 
   if(mysqli_num_rows($result) == 1){
        $user = mysqli_fetch_assoc($result);
-    $user_avatar_name = $user['passport'];
-    $user_avatar_path = '../img/' .  $user_avatar_name;
+    $user_passport_name = $user['passport'];
+    $user_passport_path = '../img/passport/'.$user_passport_name;
+
+    $user_avatar_name = $user['avatar'];
+    $user_avatar_path = '../img/thumbnail/'.$user_avatar_name;
 
     // delete image if available
     if($user_avatar_path){
+        unlink($user_passport_path);
         unlink($user_avatar_path);
 
         // delet post from database

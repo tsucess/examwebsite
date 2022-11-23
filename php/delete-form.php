@@ -13,7 +13,7 @@ if(isset($_GET['id'])){
   if(mysqli_num_rows($result) == 1){
        $form = mysqli_fetch_assoc($result);
     $form_name = $form['document'];
-    $form_path = '../form/' .  $form_name;
+    $form_path = '../form/'.$form_name;
 
     // delete image if available
     if($form_path){

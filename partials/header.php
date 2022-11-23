@@ -2,7 +2,7 @@
 require "./config/database.php";
 
 //fetch current user's Information from database
-if (isset($_SESSION['id'])) {
+if (isset($_SESSION['id'])) { 
 
     $current_user_id = $_SESSION['id'];
 
@@ -13,7 +13,7 @@ if (isset($_SESSION['id'])) {
         $admin = mysqli_fetch_assoc($admin_info);
     } else {
 
-        $user_query = "SELECT passport FROM users WHERE id = $current_user_id LIMIT 1";
+        $user_query = "SELECT avatar FROM users WHERE id = $current_user_id LIMIT 1";
         $user_info = mysqli_query($dbconnect, $user_query);
 
         $user = mysqli_fetch_assoc($user_info);
@@ -52,12 +52,13 @@ if (isset($_SESSION['id'])) {
                     <li class="nav_profile">
                         <?php if ($_SESSION['user_is_admin'] == 1 || $_SESSION['user_is_admin'] == 2) :  ?>
                             <div class="avatar">
-                                <img src="<?= ROOT_URL . 'img/' . $admin['avatar'] ?>">
+                                <img src="<?= ROOT_URL . 'img/avatar/' . $admin['avatar'] ?>">
                             </div>
                         <?php else :  ?>
                             <div class="avatar">
-                                <img src="<?= ROOT_URL . 'img/' . $user['passport'] ?>">
+                                <img src="<?= ROOT_URL . 'img/avatar/' . $user['avatar'] ?>">
                             </div>
+                       
                         <?php endif  ?>
                         <ul>
                             <li><a href="<?= ROOT_URL ?>admin/index.php">Dashboard</a></li>

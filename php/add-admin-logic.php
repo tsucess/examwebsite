@@ -3,7 +3,7 @@ require "../config/database.php";
  
 
 // get data from add-admin page
-if (isset($_POST['submit'])) {
+if (isset($_POST['submit'])) { 
 
 
     $firstname = filter_var($_POST['firstname'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
@@ -12,6 +12,7 @@ if (isset($_POST['submit'])) {
     $lname = strtoupper($lastname);
     $pNumber = filter_var($_POST['pnumber'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $nationality = filter_var($_POST['nationality'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    $email = filter_var($_POST['email'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $createpsword = filter_var($_POST['createpassword'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $confirmpsword = filter_var($_POST['confirmpassword'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $gender = filter_var($_POST['gender'], FILTER_SANITIZE_NUMBER_INT);
@@ -51,7 +52,7 @@ if (isset($_POST['submit'])) {
                 $time = time();
                 $avatar_name = $time . $avatar['name'];
                 $avatar_tmp_name = $avatar['tmp_name'];
-                $avatar_destination_path = '../img/' . $avatar_name;
+                $avatar_destination_path = '../img/avatar/'.$avatar_name;
 
                 // chck if file is an image
                  $image_format = ['png', 'jpg', 'jpeg'];
@@ -82,8 +83,8 @@ if(isset($_SESSION['add-admin'])){
     header('location: ' . ROOT_URL . 'admin/add-admin.php');
     die();
 } else {
-    $insert_user_query = "INSERT INTO admins (firstname, lastname, passport_no, nationality, avatar, password, gender, is_super_admin) 
-    VALUES ('$fname', '$lname', '$pNumber', '$nationality', '$avatar_name', '$hashed_password', '$gender', '$userrole' )";
+    $insert_user_query = "INSERT INTO admins (firstname, lastname, passport_no, nationality, avatar, email, password, gender, is_super_admin) 
+    VALUES ('$fname', '$lname', '$pNumber', '$nationality', '$avatar_name', '$email', '$hashed_password', '$gender', '$userrole' )";
     $insert_user_result = mysqli_query($dbconnect, $insert_user_query);
 
 

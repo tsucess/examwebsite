@@ -4,14 +4,15 @@
     --color-blue-light: #8ad3f2;
     --color-primary-variant: #5854c7;
     --color-red: #da0f3f;
-    --color-red-light: hsl(346, 87%, 46%, 15%);
+    --color-red-light: rgba(236, 138, 138, 0.5);
+    --color-red-dark: rgb(189, 4, 81);
     --color-green: #00c476;
     --color-green-light: hsl(156, 100%, 38%, 15%);
     --color-gray-900: #242424;
     --color-gray-700: #2d2b7c;
     --color-gray-700t: #2c2b7c98;
     --color-gray-300: rgba(242, 242, 254, 0.3);
-    --color-gray-200: #242424;
+    --color-gray-200: #0020d8;
     --color-blue-dark: #000030;
     --color-text: #ffffff;
     --transition: all 300ms ease;
@@ -140,12 +141,20 @@ nav button {
 }
 
 .avatar {
-    width: 2.5rem;
-    height: 2.5rem;
+    width: 3.5rem;
+    height: 3.5rem;
     border-radius: 50%;
     overflow: hidden;
-    border: 0.3rem solid var(--color-text);
+    border: 0.2rem solid var(--color-text);
 }
+
+.nav_profile .avatar img {
+    width: 100%;
+    height: 100%;
+
+}
+
+
 
 .nav_logo {
     font-weight: 600;
@@ -154,7 +163,7 @@ nav button {
     left: -3rem;
 }
 
-img#logo{
+img#logo {
     width: 10rem;
 }
 
@@ -171,7 +180,7 @@ img#logo{
 
 .nav_profile ul {
     position: absolute;
-    top: 145%;
+    top: 112%;
     right: 0;
     display: flex;
     flex-direction: column;
@@ -180,6 +189,7 @@ img#logo{
     visibility: hidden;
     opacity: 0;
     transition: var(--transition);
+    z-index: 0;
 }
 
 
@@ -187,6 +197,8 @@ img#logo{
     font-size: 2.5rem;
     text-align: center;
 }
+
+
 
 /************* show nav ul when nav profile is on hover ***************/
 
@@ -239,9 +251,18 @@ GENERAL POST CSS
     overflow: hidden;
     margin-bottom: 1.6rem;
     border-radius: 1rem;
+    width: 300px;
+    height: 300px;
 }
 
-#course:hover .course_thumbnail  img {
+
+.course_thumbnail img {
+    width: 100%;
+    height: 100%;
+
+}
+
+#course:hover .course_thumbnail img {
     filter: saturate(0);
     transition: filter 500ms ease;
 }
@@ -389,10 +410,12 @@ FOOTER CSS
 *************************************************/
 
 footer {
+    position: relative;
     background: var(--color-gray-900);
     padding: 5rem 0 5rem 0;
     box-shadow: inset 0 1.5rem 1.5rem rgba(0, 0, 0, 0.2);
     color: #ffffff;
+    z-index: 0;
 }
 
 .footer_socials {
@@ -500,7 +523,7 @@ BUTTON CSS
 .btn {
     display: inline-block;
     width: fit-content;
-    padding: 0.6rem 1.2rem;
+    padding: 0.8rem 1.2rem;
     background: var(--color-primary);
     border-radius: var(--card-border-radius-2);
     cursor: pointer;
@@ -513,22 +536,61 @@ BUTTON CSS
     font-size: 0.8rem;
 }
 
-.btn-edit{
+.btn-edit {
     text-align: center;
     width: 45%;
     margin: 1rem;
     font-weight: bold;
+    padding: 1rem;
+}
+
+
+
+
+.btn-lg {
+    padding: 1rem 1.2rem;
+    background: var(--color-primary);
+    border-radius: var(--card-border-radius-2);
+    cursor: pointer;
+    transition: var(--transition);
+    color: var(--color-blue-dark);
+    font-weight: bold;
+    text-align: center;
+}
+
+a.btn-lg {
+    text-align: center;
 }
 
 .btn.danger {
     background: var(--color-red);
 }
 
-.btn:hover {
-    background: var(--color-blue-dark);
+.btn-lg:hover,
+.btn:hover,
+.edtBtn:hover,
+.edt-userBtn:hover,
+.edt-adminBtn:hover {
+    background: var(--color-gray-200);
     color: var(--color-text);
 }
 
+.edtBtn {
+    background: var(--color-primary);
+    border-radius: var(--card-border-radius-2);
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+}
+
+.edt-userBtn,
+.edt-adminBtn {
+    background: var(--color-primary);
+    border-radius: var(--card-border-radius-2);
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+}
 
 /*************************************************
 SINGLE POST CSS
@@ -594,16 +656,35 @@ NOTICE POST CSS
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 4rem;
-    font-size: 0.8rem;
+    font-size: 0.9rem;
+    line-height: 1.8;
     color: var(--color-text);
 }
 
-.notice_container > .notice_info > .heading a, .post_author_info, h5{
+.notice_container>.notice_info>.heading a,
+.post_author_info,
+h5 {
     color: var(--color-blue-light);
 }
 
+.post_author_info {
+    font-size: 1.2rem;
+}
+
+.notice .notice_title.heading {
+    font-size: 2rem;
+    text-align: center;
+
+}
+
+.notice .notice_thumbnail img {
+    width: 100%;
+    height: 100%;
+}
+
 .notice .notice_thumbnail {
-    height: fit-content;
+    width: 600px;
+    height: 600px;
     border: 5px solid var(--color-text);
 }
 
@@ -619,6 +700,10 @@ GENERAL FORM CSS
     place-items: center;
     height: 100vh;
     margin: 4rem 0 3.5rem;
+}
+
+section#signin {
+    margin: -4rem 0;
 }
 
 .form_section-container {
@@ -680,24 +765,110 @@ form.except {
 input,
 textarea,
 select {
-    padding: 1rem 1.4rem;
+    padding: 0.8rem 1.4rem;
     background: var(--color-text);
     border-radius: var(--card-border-radius-2);
+    font-size: 1.1rem;
     resize: none;
     color: var(--color-gray-700);
     border: 1px solid #8f8f8f;
 }
 
-
 .form_section small {
+    font-size: 1.1rem;
     margin-top: 1rem;
     display: block;
 }
 
 .form_section small a {
-    color: var(--color-primary);
-    font-size: 1rem;
+    color: var(--color-blue-dark);
+    font-size: 1.1rem;
+    font-weight: bold;
 }
+
+.form_section small a:hover {
+    text-decoration: underline;
+}
+
+
+#session_year {
+    margin-bottom: 1rem;
+}
+
+/*************************************************
+GENERAL MODAL FORM CSS
+*************************************************/
+
+#modal-edit-inactive5,
+#modal-edit-inactive1,
+#modal-edit-inactive,
+#modal-edit-inactive2,
+#modal-edit-inactive4,
+#modal-edit-inactive3 {
+    display: none;
+
+}
+
+#modal-edit-post5,
+#modal-edit,
+#modal-edit-form4,
+#modal-add-form4,
+#modal-add,
+#modal-edit-user,
+#modal-edit-admin {
+    display: none;
+}
+
+#modal-edit-inactive5.active2,
+#modal-edit-inactive1.active2,
+#modal-edit-inactive4.active2,
+#modal-edit-inactive.active2,
+#modal-edit-inactive2.active2,
+#modal-edit-inactive3.active {
+    display: block;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 110%;
+    background: #000030;
+    opacity: 0.7;
+    z-index: 1;
+}
+
+#modal-edit.active2,
+#modal-add.active2,
+#modal-edit-user.active3,
+#modal-edit-admin.active {
+    display: block;
+    position: absolute;
+    top: 0;
+    z-index: 2;
+    color: var(--color-text);
+}
+
+#modal-edit-post5.active2,
+#modal-edit-form4.active2,
+#modal-add-form4.active2 {
+    display: block;
+    position: absolute;
+    top: -6rem;
+    z-index: 2;
+    color: var(--color-text);
+}
+
+#modal-edit>.form_section {
+    margin-top: 3rem;
+}
+
+#modal-add>.form_section h2,
+#modal-edit>.form_section h2,
+#modal-add-form4>.form_section h2,
+#modal-edit-form4>.form_section h2 {
+    color: var(--color-text);
+}
+
+
+
 
 /*************************************************
 INVOICE CSS
@@ -707,24 +878,50 @@ INVOICE CSS
     display: grid;
     place-items: center;
     height: 100vh;
-    margin: 4rem 0 3.5rem;
+    margin: 2rem 0 3.5rem;
+}
+
+.invoice_section h3 {
+    text-align: right;
+    line-height: 1;
+}
+
+.invoice_section img {
+    margin: auto;
+}
+
+.invoice_section h2 {
+    font-size: 1.5rem;
+    margin: auto;
+    text-align: center;
+
 }
 
 .invoice_section-container {
     width: var(--form-width);
+    margin-top: -7rem;
 }
 
-.invoice_section > h2 {
+.invoice_section>h2 {
     text-align: center;
 }
 
-.invoice_section table{
+.invoice_section table {
     border-collapse: collapse;
+    color: var(--color-blue-dark);
+    font-size: 1rem;
 }
-.invoice_section td, th{
+
+.invoice_section td,
+th {
     border: 1px solid black;
     text-align: left;
     padding: 1rem;
+}
+
+.invoice_section table tr th {
+    background: var(--color-gray-700);
+    color: var(--color-text);
 }
 
 
@@ -733,18 +930,163 @@ INVOICE CSS
 REPORT CSS
 *************************************************/
 
-.report > h2, h3{
+.report>h2,
+h3 {
     text-align: center;
 }
-.report > table{
+
+.report>table {
     border-collapse: collapse;
 }
 
-.report > h3 {
+.report>h3 {
     color: var(--color-text);
 }
 
 
+.row {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    margin-top: 1rem;
+    width: 90%;
+
+}
+
+.row>.cards {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    color: var(--color-text);
+    width: 100%;
+}
+
+.row>.cards>.card {
+    border-radius: 2rem;
+    width: 12rem;
+    height: 12rem;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+}
+
+.card.one {
+    background: var(--color-blue-dark);
+}
+
+.card.two {
+    background: var(--color-blue-light);
+}
+
+.card.three {
+    background: var(--color-gray-200);
+
+}
+
+.card.fourth {
+    background: var(--color-red-dark);
+}
+
+
+
+.row>.cards>.g-card {
+    background: var(--color-text);
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 22rem;
+    border-radius: 2rem;
+    padding: 4rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.row>.cards>.g-card>h3 {
+    color: var(--color-blue-dark);
+}
+
+
+.row>.cards>.card h3 {
+    color: var(--color-text);
+    text-align: left;
+
+}
+
+.row>.cards>.card span {
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+.top_head {
+    margin: 4rem auto;
+    margin-bottom: 6rem;
+}
+
+
+/*************************************************
+CONTACT FORM CSS
+*************************************************/
+
+@media print {
+    body *:not(#invoice-section, #report-section):not(#invoice-section *, #report-section *) {
+        visibility: hidden;
+    }
+
+    #report-section {
+        position: absolute;
+        top: 0;
+        left: 0;
+        /* margin: auto; */
+        color: var(--color-blue-dark);
+        visibility: visible;
+    }
+
+    .container {
+        width: 80%;
+    }
+
+    /* .top_head {
+        margin-top: 2rem;
+    }
+    .invoice_section-container {
+        margin-top: -6rem;
+    } */
+    div.buttons{
+        visibility: hidden;
+    }
+
+    #invoice_section {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        color: var(--color-blue-dark);
+        visibility: visible;
+    }
+
+    #report-section>h2,
+    #report-section table tr th,
+    #invoice-section h2,
+    #invoice-section table tr th {
+        color: #000030;
+    }
+
+}
+
+
+
+/* @media print{
+    body *:not(#invoice-section):not(#invoice-section *){
+        visibility: hidden;
+    }
+
+   
+    
+} */
 
 
 /*************************************************
@@ -771,18 +1113,31 @@ CONTACT FORM CSS
 /*************************************************
 FAQ CSS
 *************************************************/
-.faq_container{
+.faq_container {
     margin-top: 8rem;
     margin-bottom: 2rem;
     font-size: 1rem;
 }
 
-.faq_container  h2{
+.faq_container h2 {
     font-size: 2rem;
 }
 
-.faq_container > article .heading, .content {
+.faq_container>article .heading,
+.content {
     text-align: left;
+}
+
+
+
+/*************************************************
+REPORT CSS
+*************************************************/
+#report>form #years,
+#report>form #sessions,
+#report>form #subjects,
+#report>form #others {
+    display: none;
 }
 
 
@@ -793,7 +1148,11 @@ DASHBOARD CSS
 
 .dashboard {
     margin-top: 6rem;
-    
+
+}
+
+.dashboard.rel {
+    position: absolute;
 }
 
 .sidebar_toggle {
@@ -859,39 +1218,40 @@ DASHBOARD CSS
 }
 
 .dashboard main tr:hover td {
-    background: var(--color-text);
-    color: var(--color-blue-dark);
     cursor: default;
     transition: var(--transition);
 }
 
-.tb-courses th:last-child, td:last-child{
+.tb-courses th:last-child,
+td:last-child {
     text-align: center;
 }
-.tb-courses tr:last-child{
+
+.tb-courses tr:last-child {
     background: #000030;
     font-weight: bold;
 }
 
-.tb-courses tr:last-child:hover td{
+.tb-courses tr:last-child:hover td {
     background: none;
     color: var(--color-text);
 }
 
-.tb-courses tr:last-child td .btn:hover{
+.tb-courses tr:last-child td .btn:hover {
     background: var(--color-text);
     color: var(--color-blue-dark);
-    
+
 }
-th#fee{
+
+th#fee {
     text-align: center;
 }
 
-tbody#reg td{
+tbody#reg td {
     text-align: left;
 }
 
-.dashboard #user > table  td:last-child{
+.dashboard #user>table td:last-child {
     text-align: left;
 }
 
@@ -962,8 +1322,8 @@ MEDIA QUERIES CSS (MEDIUM DEVICES)
         display: none;
         transition: all 3 s ease;
     }
-    
-    img#logo{
+
+    img#logo {
         width: 8rem;
     }
 
@@ -1031,6 +1391,8 @@ MEDIA QUERIES CSS (MEDIUM DEVICES)
         border: 0;
     }
 
+
+
     /************* Carousel ************ */
 
     .carousel .carousel_image img {
@@ -1057,7 +1419,11 @@ MEDIA QUERIES CSS (MEDIUM DEVICES)
         display: flex;
         flex-direction: column;
         gap: 1rem;
-    
+
+    }
+
+    #modal-edit>.form_section {
+        margin-top: 4rem;
     }
 
     /********* Dashboard **********/
@@ -1065,7 +1431,7 @@ MEDIA QUERIES CSS (MEDIUM DEVICES)
         grid-template-columns: 4.3rem auto;
         padding: 1px;
         /* background: transparent; */
-        
+
     }
 
 
@@ -1091,11 +1457,12 @@ MEDIA QUERIES CSS (MEDIUM DEVICES)
         background: transparent;
     }
 
-    .btn-edit{
+    .btn-edit {
         width: 40%;
     }
 
-    .tb-courses th:last-child, td:last-child{
+    .tb-courses th:last-child,
+    td:last-child {
         text-align: left;
     }
 
@@ -1106,6 +1473,16 @@ MEDIA QUERIES CSS (MEDIUM DEVICES)
     .m-users main {
         margin-left: 1rem;
     }
+
+    /* ******************** analysis************************** */
+
+    .row>.cards>.g-card {
+        margin: auto 1rem;
+        margin-bottom: 1rem;
+
+    }
+
+
 }
 
 
@@ -1240,7 +1617,7 @@ MEDIA QUERIES CSS (SMALL DEVICES)
         display: inline-block;
     }
 
-    .btn-edit{
+    .btn-edit {
         width: 90%;
     }
 
@@ -1248,4 +1625,62 @@ MEDIA QUERIES CSS (SMALL DEVICES)
         display: none;
     }
 
+
+    .row>.cards {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        color: var(--color-text);
+        width: 100%;
+    }
+
+    .row>.cards>.card {
+        flex-direction: row;
+        width: 100%;
+        padding: 3rem;
+        margin: auto 1rem;
+    }
+
+
+    .row>.cards>.g-card {
+        margin: auto 1rem;
+        margin-bottom: 1rem;
+
+    }
+
+}
+
+
+
+#error-txt {
+    color        : #721c24;
+    background   : #f8d7da;
+    padding      : 8px 10px;
+    text-align   : center;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    border       : 1px solid #f5c6cb;
+    display: none;
+}
+
+.message {
+    display: none;
+}
+
+.message.error {
+    padding: 0.8rem 1.4rem;
+    margin-bottom: 1rem;
+    border-radius: var(--card-border-radius-2);
+    display: block;
+    background: var(--color-red-light);
+    color: var(--color-red);
+}
+
+.message.success {
+    padding: 0.8rem 1.4rem;
+    margin-bottom: 1rem;
+    border-radius: var(--card-border-radius-2);
+    display: block;
+    background: var(--color-green-light);
+    color: var(--color-green);
 }

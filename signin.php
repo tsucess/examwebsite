@@ -1,8 +1,8 @@
-<?php 
-require "./config/database.php";
+<?php
+require "./partials/header.php";
 
 
-$fname = $_SESSION['signin-data']['fullname_firstname'] ?? null;
+$email = $_SESSION['signin-data']['email'] ?? null;
 $password = $_SESSION['signin-data']['password'] ?? null;
 
 
@@ -23,8 +23,17 @@ unset($_SESSION['signin-data']);
 </head>
 
 <body>
-    <section class="form_section">
-        <div class="container form_section-container"> 
+
+
+    <section class="dashboard" hidden>
+        <div class="container dashboard_container">
+            <button id="show_sidebar_btn" class="sidebar_toggle"><i class="uil uil-angle-right-b"></i></button>
+            <button id="hide_sidebar_btn" class="sidebar_toggle"><i class="uil uil-angle-left-b"></i></button>
+        </div>
+    </section>
+
+    <section id="signin" class="form_section">
+        <div class="container form_section-container">
             <h2>Sign In</h2>
             <?php if (isset($_SESSION['signup-success'])) : ?>
                 <div class="alert_message success">
@@ -33,7 +42,7 @@ unset($_SESSION['signin-data']);
                         ?>
                     </p>
                 </div>
-            <?php elseif(isset($_SESSION['signin'])) : ?>
+            <?php elseif (isset($_SESSION['signin'])) : ?>
                 <div class="alert_message error">
                     <p> <?= $_SESSION['signin'];
                         unset($_SESSION['signin']);
@@ -42,7 +51,7 @@ unset($_SESSION['signin-data']);
                 </div>
             <?php endif ?>
             <form action="<?php ROOT_URL ?>php/signin-logic.php" method="POST">
-                <input type="text" name="fullname_firstname" value="<?= $fname ?>" placeholder="Enter Your Full Name">
+                <input type="text" name="email" value="<?= $email ?>" placeholder="Enter your Email">
                 <input type="password" name="password" value="<?= $password ?>" placeholder="Enter Your Password">
                 <button type="Submit" name="submit" class="btn"> Sign In</button>
                 <small>Don't have an account? <a href="./signup.php">Sign Up</a></small>
@@ -50,7 +59,8 @@ unset($_SESSION['signin-data']);
         </div>
     </section>
 
-    <!-- <script src="./js/main.js"></script> -->
-</body>
 
-</html>
+    <?php
+    include './partials/footer.php';
+
+    ?>

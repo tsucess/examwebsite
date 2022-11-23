@@ -2,10 +2,16 @@
 include './partials/header.php';
 
 
+// fetch data from database 
+$featured_query = "SELECT * FROM posts WHERE is_featured";
+$featured_result = mysqli_query($dbconnect, $featured_query);
+$featured = mysqli_fetch_assoc($featured_result);
+
 
 // fetch 3 posts from posts table
 $query = "SELECT * FROM subjects ORDER BY date_time DESC LIMIT 3";
 $subjects = mysqli_query($dbconnect, $query);
+
 ?>
 
 <section class="dashboard" hidden>
@@ -60,7 +66,7 @@ $subjects = mysqli_query($dbconnect, $query);
                         <p><?= $subject['subject'] ?></p>
                     </h3>
                     <p class="course_body">
-                        <b>DURATION: </b><?= $subject['option_code'] ?>
+                        <b>DURATION: </b><?= $subject['duration'] ?>
                     </p>
                 </div>
             </article>
@@ -70,34 +76,25 @@ $subjects = mysqli_query($dbconnect, $query);
 </section>
 <!-- ******************** End OF POST Section *********************** -->
 
+<?php if(mysqli_num_rows($featured_result) == 1) : ?>
 <section class="notice">
     <div class="container notice_container">
         <div class="notice_thumbnail">
-            <img src="./img/nodp.png" alt="">
+            <img src="./img/thumbnail/<?= $featured['post_thumbnail']?>" alt="">
         </div>
         <div class="notice_info">
-            <h2 class="notice_title heading"><a href="post.php">Notice Bulletin</a></h2>
-            <p class="notice_body">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum asperiores accusantium, voluptas
-                dignissimos enim autem molestiae blanditiis! Eveniet quibusdam ducimus praesentium quisquam ea
-                quidem, eum placeat impedit voluptatibus officiis? Quam.
-                <br> Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum asperiores accusantium, voluptas
-                dignissimos enim autem molestiae blanditiis! Eveniet quibusdam ducimus praesentium quisquam ea
-                quidem, eum placeat impedit voluptatibus officiis? Quam.
-                <br> Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum asperiores accusantium, voluptas
-                dignissimos enim autem molestiae blanditiis! Eveniet quibusdam ducimus praesentium quisquam ea
-                quidem, eum placeat impedit voluptatibus officiis? Quam.
+            <h2 class="notice_title heading"><a href="post.php"><?= $featured['title']?></a></h2>
+            <p class="notice_body"> <?= $featured['body']?>
             </p>
             <div class="post_author">
                 <div class="post_author_info">
-                    <h5>By: Ogunsanya Taofeeq</h5>
-                    <small>September 19, 2022 - 08:30</small>
+                    <small><?= date("M, d, Y - H:i", strtotime($featured['date_time']))?></small>
                 </div>
             </div>
         </div>
     </div>
 </section>
-
+<?php endif ?>
 <!-- ******************** End OF Notice Bulletin SECTION *********************** -->
 <div id="contact"></div> <br> <br>
 <section class="contact">
@@ -107,13 +104,14 @@ $subjects = mysqli_query($dbconnect, $query);
             <input type="text" class="field" placeholder="Enter Name">
             <input type="text" class="field" placeholder="Enter Email">
             <textarea name="" class="field" id="" cols="30" rows="10" placeholder="Message"></textarea>
+            <input type="submit" class="field btn btn-edit" value="Submit" placeholder="Enter Email">
+            <!-- <a href="add-notice.php" class="btn btn-edit">Submit</a> -->
         </form>
     </div>
 </section>
 
 <!-- ******************** End OF CONTACT SECTION *********************** -->
-
+<script src="./js/carousel.js"></script>
 <?php
 include './partials/footer.php';
-
 ?>

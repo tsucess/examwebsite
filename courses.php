@@ -30,7 +30,7 @@ $subjects = mysqli_query($dbconnect, $query);
                         <p><?= $subject['subject'] ?></p>
                     </h3>
                     <p class="course_body">
-                       <b>DURATION: </b><?= $subject['option_code']?>
+                       <b>DURATION: </b><?= $subject['duration']?>
                     </p>
                 </div>
             </article>
